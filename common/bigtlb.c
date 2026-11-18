@@ -4,11 +4,11 @@
  *
  * How: the pool is mapped at VA = 0x40000000 + (PA mod 8 MB), so VA and PA line up for pages up to 4 MB. Up to
  * BIGTLB_MAX global wired entries cover the pool with 8 MB, 2 MB or 512 KB page pairs (largest that fits, aligned).
- * The entries are written by a small kernel-mode payload (common/tlbwire_bin.h, source tools/device/kx/tlbwire.S),
+ * The entries are written by a small kernel-mode payload (common/tlbwire_bin.h, source tweaks/tlbwire.S),
  * run once through the virtuart driver's poll pointer (kernel fops at physical 0x0039b1b8, slot +28, stock 0x802bc8f4),
  * which is put back immediately. The payload lives in the first 4 KB of the pool (kernel address 0x80000000 | PA).
- * The entries are global (G bit), so they are removed at deinit, and lowram_body.sh runs `tlbclear` before every game,
- * so a crashed game cannot leave a stale mapping. Off switches: R36_BIGTLB=0 or cubegm/bigtlb_off.
+ * The entries are global (G bit), so they are removed at deinit, and the launcher runs `tlbclear` before every game,
+ * so a crashed game cannot leave a stale mapping. Off switches: R36_BIGTLB=0 or the file cubegm/bigtlb_off.
  */
 #ifndef BIGTLB_C
 #define BIGTLB_C

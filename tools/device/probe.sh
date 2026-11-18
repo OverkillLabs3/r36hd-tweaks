@@ -3,7 +3,7 @@
 #   /mnt/sdcard/probe/*.txt  (one file per topic),  /mnt/sdcard/probe_report.txt (all of it in one file)
 # and /mnt/sdcard/probe_bundle.tgz when tar is available. Nothing is written outside the SD card.
 SD=${SD:-/mnt/sdcard}
-DIR=${DIR:-$SD/r36probe}
+DIR=${DIR:-$SD/roms/ports/r36probe}
 RUN=${RUN:-}                       # test hook: a prefix such as "qemu-mipsel -L sysroot"
 P=$SD/probe
 rm -rf "$P"; mkdir -p "$P"

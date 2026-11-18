@@ -1,5 +1,5 @@
-/* fps_overlay: "FPS nn" in the top left corner of an RGB565 frame (green from 30, yellow from 20, red below).
- * Call fps_draw() once per newly shown frame. */
+/* fps_overlay: "FPS nn" in the top left corner of an RGB565 frame (green from
+ * 30, yellow from 20, red below). Call fps_draw() once per newly shown frame. */
 #ifndef FPS_OVERLAY_H
 #define FPS_OVERLAY_H
 #include <stdint.h>

@@ -9,7 +9,7 @@
  * Settings (environment or picoarch core option exported as environment):
  *   R36_MMZ_MB=0      turn it off (an empty file /mnt/sdcard/cubegm/mmz_off does the same)
  *   R36_MMZ_MB=n      largest block to try, in MB (default 48; it steps down by 4 MB until one is granted)
- *   R36_MMZ_FAKE=1    test mode: use ordinary anonymous memory instead of /dev/mmz (PC and QEMU tests)
+ *   R36_MMZ_FAKE=1    test mode: use ordinary anonymous memory instead of /dev/mmz (tests on a PC)
  *   R36_MMZ_LOG=path  append one status line to this file (default /mnt/sdcard/cubegm/logs/mmz_heap.log)
  */
 #ifndef MMZ_HEAP_H

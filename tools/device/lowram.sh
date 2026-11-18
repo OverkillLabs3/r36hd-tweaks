@@ -9,5 +9,6 @@ if [ -f /mnt/sdcard/cubegm/libr36mem.so ] && [ ! -f /mnt/sdcard/cubegm/fastmem_o
 fi
 # sampling profiler (common/r36prof.c): only when the file cubegm/prof_on exists. Output in cubegm/logs/prof_*.
 if [ -f /mnt/sdcard/cubegm/libr36prof.so ] && [ -f /mnt/sdcard/cubegm/prof_on ]; then
+    export R36_PROF_TAG="${1:-game}"
     export LD_PRELOAD="${LD_PRELOAD:+$LD_PRELOAD:}/mnt/sdcard/cubegm/libr36prof.so"
 fi

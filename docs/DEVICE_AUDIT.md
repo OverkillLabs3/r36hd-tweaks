@@ -1,6 +1,6 @@
 # R36HD device audit
 
-Every subsystem that was checked for speed, with its status. **DONE**: implemented in this repository. **CLOSED**: checked, nothing to gain or not safely reachable. Details are in `KERNEL_ANALYSIS.md`.
+Every subsystem that was checked for speed, with its status. **DONE**: implemented in this repository. **CLOSED**: checked, nothing to gain or not safely reachable. **OPEN**: analysed, not finished. Details are in `KERNEL_ANALYSIS.md`.
 
 ## Main CPU (MIPS 74Kc)
 | Item | Status | Finding |
@@ -25,11 +25,12 @@ Every subsystem that was checked for speed, with its status. **DONE**: implement
 | Item | Status | Finding |
 |---|---|---|
 | Size | CLOSED | The controller says 256 MB, but data mirrors at +128 MB. 128 MB. |
-| DDR speed | CLOSED | 1066 MT/s by strap, set before any code outside the boot ROM runs. |
+| DDR speed | OPEN | 1066 MT/s. Set by a register script in stage 2 of the SPI flash; the chip is rated 1600. Needs a flash rewrite, see section 13 of the kernel notes. |
 | Device-tree layout | CLOSED | Linux ends where the panel frame buffer starts. Moving it only shifts memory between Linux and the pool. |
 | Video pool (mmz0) | DONE | Up to 48 MB per program through `/dev/mmz` as the heap (`common/mmz_heap.c`), zero-filled. |
 | memset / memcpy | DONE | `common/fastmem.c`: `pref 30` on whole lines, 3 to 4x faster memset. |
-| zram, zswap, huge pages | CLOSED | Not in the kernel. |
+| zram | DONE | Builds and loads as a module with the settings in `tools/kmod/build_kmods.sh`. No gain measured in a game. |
+| zswap, huge pages | CLOSED | Not in the kernel. |
 | Swap | DONE | With the pool swap is rarely touched; set swappiness to 0 during games. |
 
 ## Storage
@@ -53,3 +54,10 @@ Every subsystem that was checked for speed, with its status. **DONE**: implement
 | Background processes | CLOSED | `hcdaemon`, `cubevol` and the stopped UI use about 0 percent CPU. |
 | Compiler flags | DONE | `-fvisibility=hidden -fno-semantic-interposition` removes about 5 percent of instructions in plugin-style cores. |
 | Profiler | DONE | `common/r36prof.c`: SIGPROF sampling at 250 Hz, records the PC. |
+
+## Debug link and flash
+| Item | Status | Finding |
+|---|---|---|
+| USB serial link | DONE | `tools/r36.py` and `tools/device/r36agent.c`: commands, file transfer and screenshots without a network. |
+| Register sweeps | DONE | Some disabled blocks hang the bus; `tools/device/wdtd.c` resets the console. See section 12 of the kernel notes. |
+| SPI flash | OPEN | Dumped and analysed, never written. DDR speed (1066, chip rated 1600) is set by a register script in the flash. A 1333 candidate image is built offline and checked against the SDK, see section 13. |

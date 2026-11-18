@@ -1,5 +1,5 @@
 /* core2: run jobs on the second CPU core of the R36HD (the core of the video/audio firmware, about 800 MHz, with FPU).
- * Runtime only; nothing on the card changes. See tools/device/core2/.
+ * Runtime only; nothing on the card changes. See tools/device/core2/ and section 8 of docs/KERNEL_ANALYSIS.md.
  *
  *   if (core2_start(dir) == 0) {                    // dir holds boot.bin and worker.bin
  *       uint32_t fn = core2_load(job_bin, job_len);  // copy a position-independent job blob, returns its entry

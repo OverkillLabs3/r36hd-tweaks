@@ -3,7 +3,7 @@
  * Measured: memset 197-269 MB/s with glibc, 808-831 MB/s this way;
  * memcpy +5 to +30 %. pref 30 leaves the line's old contents undefined (zeroed), so it is only issued for lines
  * that are completely overwritten before anything reads them. Everything small, unaligned or overlapping goes to the
- * glibc function (looked up with dlsym(RTLD_NEXT)). Off switch: delete the library or create cubegm/fastmem_off. */
+ * glibc function (looked up with dlsym(RTLD_NEXT)). Off switch: do not preload it. */
 #define _GNU_SOURCE
 #include <dlfcn.h>
 #include <stddef.h>

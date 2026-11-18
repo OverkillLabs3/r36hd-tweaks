@@ -1,5 +1,5 @@
 #!/bin/sh
-# cpuclock.sh - optional CPU overclock set at every start by the start-up script, through the SoC clock registers.
+# cpuclock.sh - optional CPU overclock set at every start by zhijack.sh, through the SoC clock registers.
 # Mechanism copied from the console's own kernel and boot loader (hc16xx_set_cpu_clk):
 #   0x18800380  PLL divider  = ((MHz*10 - 0x18) / 0x18) << 16 | 0x80000000
 #   0x18800074  CPU source   = bits 10:8 (7 = that PLL, 5 = the 1188 MHz preset), then bit 22 applies the change
@@ -11,7 +11,7 @@
 # Everything is lost at power off, so a hang is cured by switching the console off and on.
 CFG=/mnt/sdcard/cubegm/cpu_mhz.txt
 FLAG=/mnt/sdcard/cubegm/cpu_try.flag
-PROBE=/mnt/sdcard/r36probe/cpuclk_probe
+PROBE=/mnt/sdcard/roms/ports/r36probe/cpuclk_probe
 CLOG=/mnt/sdcard/cubegm/logs/cpuclock.log
 mkdir -p /mnt/sdcard/cubegm/logs 2>/dev/null
 cl() { echo "$(date '+%H:%M:%S' 2>/dev/null) $*" >> "$CLOG"; sync; }

@@ -1,5 +1,5 @@
 /* tlbclear: remove every wired TLB entry (Wired = 0, entries 0..7 invalidated). Run before each game by
- * lowram_body.sh, so a game that crashed without removing its large-page entries cannot leave a global mapping behind.
+ * the launcher, so a game that crashed without removing its large-page entries cannot leave a global mapping behind.
  * The kernel itself uses no wired entries (Wired reads 0 at boot).
  * Usage: tlbclear [log]     exit 0 always */
 #define _GNU_SOURCE

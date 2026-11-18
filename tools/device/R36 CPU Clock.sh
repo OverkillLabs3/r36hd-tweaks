@@ -1,7 +1,7 @@
 #!/bin/sh
 # R36 CPU Clock - read-only. Measures the real CPU clock and reads the SoC clock registers.
 # Writes /mnt/sdcard/cpuclk_report.txt. Never starts picoarch.
-PROBE=/mnt/sdcard/r36probe/cpuclk_probe
+PROBE=/mnt/sdcard/roms/ports/r36probe/cpuclk_probe
 OUT=/mnt/sdcard/cpuclk_report.txt
 {
     echo "=== R36 CPU Clock ==="

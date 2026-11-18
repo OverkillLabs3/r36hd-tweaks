@@ -4,7 +4,7 @@
 set -e
 SF=/opt/toolchains/sf3000/mipsel-buildroot-linux-gnu_sdk-buildroot
 P=$SF/opt/ext-toolchain/bin/mips-mti-linux-gnu-
-R=$(cd "$(dirname "$0")/../../.." && pwd)
+R="$(cd "$(dirname "$0")/../../.." && pwd)"
 O=$R/build/core2; mkdir -p $O
 name=$1; shift
 srcs=(); ents=()
